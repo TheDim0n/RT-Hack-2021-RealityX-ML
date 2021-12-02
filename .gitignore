@@ -122,3 +122,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/trash
+/dataset
+/15
+/yolov5/runs
