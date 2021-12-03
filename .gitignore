@@ -126,3 +126,8 @@ dmypy.json
 /dataset
 /15
 /yolov5/runs
+/yolov5/yolov5?.pt
+/dogs
+/dogsv2
+/test_dogs
+/test_trash
