@@ -3,10 +3,10 @@ from tempfile import NamedTemporaryFile
 
 from PIL import Image, ImageDraw
 
-from .schema import Prediction
+from .schemas import Prediction
 from .upload_file import upload_file
 
-def draw_boxes(bboxes):
+def draw_boxes(bboxes, weights):
     preds = []
     for boxes in bboxes:
         img = boxes["image"]
@@ -28,9 +28,9 @@ def draw_boxes(bboxes):
         
         # with NamedTemporaryFile(mode="w", newline='', encoding="utf-8", suffix=".png") as f:
         img.save("tmp.png")
-        url = upload_file("tmp.png", boxes["camera"], "last.png")
+        url = upload_file("tmp.png", boxes["camera"], "last.png", weights)
         preds.append(Prediction(
-            overall=n_full/len(boxes["bboxes"]) > 0.5,
+            overall=n_full/len(boxes["bboxes"]) > 0.5 if len(boxes["bboxes"]) else False,
             n_full=n_full,
             n_all=len(boxes["bboxes"]),
             url=url

@@ -132,3 +132,5 @@ dmypy.json
 /dogsv2
 /test_dogs
 /test_trash
+
+ngrok.exe
