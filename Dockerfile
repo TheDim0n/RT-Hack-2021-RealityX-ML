@@ -1,5 +1,9 @@
 FROM python:3.9.9-slim
 
+RUN apt-get update -y && \
+    apt install -y libgl1-mesa-glx -y && \
+    apt-get install libglib2.0-0 -y
+
 RUN pip install --upgrade pip
 
 WORKDIR /src
