@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  trash:
+    build: .
+    environment:
+      - WEIGHTS='trash'
+      - IMG_SIZE=1080
+      - CONF=0.483
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    ports:
+      - 8000:8000

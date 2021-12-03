@@ -101,9 +101,14 @@ def run(weights='best.pt',  # model.pt path(s)
                         "class": int(cls.item()),
                         "confidence": conf.item(),
                         "center": xywh[:2],
-                        "size": xywh[2:]
+                        "size": xywh[2:],
                     }
                     bboxes.append(bbox)
 
-            results.append(bboxes)
+            results.append({
+                "bboxes": bboxes,
+                "image": im0,
+                "camera": path.split("_")[-1].split(".")[0]
+            })
+            print(path.split("_")[-1].split(".")[0])
     return results
