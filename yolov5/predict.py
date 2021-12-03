@@ -110,5 +110,5 @@ def run(weights='best.pt',  # model.pt path(s)
                 "image": im0,
                 "camera": path.split("_")[-1].split(".")[0]
             })
-            print(path.split("_")[-1].split(".")[0])
+            # print(path.split("_")[-1].split(".")[0])
     return results

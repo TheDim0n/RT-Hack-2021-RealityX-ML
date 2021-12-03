@@ -23,16 +23,22 @@ def draw_boxes(bboxes, weights):
             rx = (center_xy[0]+size[0]/2)*img_w + 10
             ly = (center_xy[1]-size[1]/2)*img_h - 10
             ry = (center_xy[1]+size[1]/2)*img_h + 10
-            color = "red" if cls == 1 else "green"
+            
+            color = "blue"
+            if weights.startswith("trash"):
+                color = "red" if cls == 1 else "green"
+            print(color)
             draw.rectangle([lx, ly, rx, ry], outline=color, width=3)
         
         # with NamedTemporaryFile(mode="w", newline='', encoding="utf-8", suffix=".png") as f:
         img.save("tmp.png")
         url = upload_file("tmp.png", boxes["camera"], "last.png", weights)
+        n_all = len(boxes["bboxes"])
+        # print(n_full/n_all > 0.5 if n_all else False, n_full, n_all)
         preds.append(Prediction(
-            overall=n_full/len(boxes["bboxes"]) > 0.5 if len(boxes["bboxes"]) else False,
+            overall=n_full/n_all > 0.5 if n_all else False,
             n_full=n_full,
-            n_all=len(boxes["bboxes"]),
+            n_all=n_all,
             url=url
         ))
     os.remove("tmp.png")
